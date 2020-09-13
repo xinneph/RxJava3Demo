@@ -8,6 +8,8 @@ repositories {
     mavenCentral()
 }
 dependencies {
+    implementation "io.reactivex.rxjava3:rxjava:3.0.6"
+    implementation "com.google.code.gson:gson:2.8.6"
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
 }
 compileKotlin {
