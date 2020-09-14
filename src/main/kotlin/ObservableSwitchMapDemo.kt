@@ -1,13 +1,14 @@
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
-private val sampleJson = "\"isMessagingEnabled\": true}"
-private val overrideConfiguration = BehaviorSubject.create<Boolean>().apply { onNext(true) }
+private val sampleJson = "{\"isMessagingEnabled\": true}"
+private val overrideConfiguration = BehaviorSubject.create<Boolean>().apply { onNext(false) }
 
 fun main() {
     val configurationFetcher = ConfigurationFetcher()
     val configurationLoader = ConfigurationLoader(configurationFetcher)
-    configurationLoader.configuration.subscribe()
+    val observer = configurationLoader.configuration.test()
+    print(observer.values())
 }
 
 class ConfigurationLoader(private val configurationFetcher: ConfigurationFetcher) {
